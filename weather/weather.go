@@ -20,6 +20,8 @@ func GetWeather(geo geo.GeoData, format int) string {
 	baseUrl.RawQuery = params.Encode()
 
 	resp, err := http.Get(baseUrl.String())
+	defer resp.Body.Close()
+
 	if err != nil {
 		fmt.Println(err.Error())
 		return ""
